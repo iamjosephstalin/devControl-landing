@@ -19,7 +19,7 @@ const Footer = () => {
         className="absolute inset-0 pointer-events-none bg-gradient-to-t from-blue-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"
       />
 
-      <div className="max-w-screen-2xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-10 mb-20">
             <div className="col-span-2">
                 <Link to="/" className="flex items-center gap-2 mb-6 text-white w-fit">
@@ -62,8 +62,8 @@ const Footer = () => {
         </div>
         
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-            <h1 className="text-[12vw] leading-none font-bold text-zinc-900 select-none tracking-tighter group-hover:text-zinc-800 transition-colors duration-500">
-                <span className="opacity-40">{'>_'}</span> DEVCONTROL
+            <h1 className="text-[8vw] leading-none font-bold text-zinc-900 select-none tracking-tighter group-hover:text-zinc-800 transition-colors duration-500">
+                {'>_DEVCONTROL'}
             </h1>
         </div>
       </div>

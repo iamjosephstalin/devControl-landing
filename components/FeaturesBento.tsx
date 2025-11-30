@@ -34,7 +34,7 @@ const Card = ({ title, description, icon: Icon, className = "", children }: any)
 const FeaturesBento = () => {
   return (
     <section id="features" className="py-24 px-6 relative">
-      <div className="max-w-screen-2xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div className="text-center mb-24">
           <ScrollReveal>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tighter text-white">

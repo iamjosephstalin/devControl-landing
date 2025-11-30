@@ -157,13 +157,13 @@ const ClientApprovalAnimation = () => {
                  </div>
 
                  {/* Content */}
-                 <div className="p-8 md:p-10 flex-1 flex flex-col justify-center">
-                     <div className="flex justify-between items-start mb-10">
+                    <div className="p-8">
+                     <div className="flex justify-between items-start mb-8">
                          <div>
-                             <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">Milestone 2: MVP Design</h3>
-                             <p className="text-zinc-400 text-sm">Submitted on Oct 14, 2025</p>
+                             <h3 className="text-xl font-bold text-white mb-1">Milestone 2: MVP Design</h3>
+                             <p className="text-zinc-400 text-xs">Submitted on Oct 14, 2025</p>
                          </div>
-                         <div className={`px-4 py-1.5 rounded-full text-sm font-bold border ${
+                         <div className={`px-3 py-1 rounded-full text-xs font-bold border ${
                              status === 'approved' 
                                 ? 'bg-green-500/10 text-green-400 border-green-500/20' 
                                 : 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20'
@@ -172,31 +172,31 @@ const ClientApprovalAnimation = () => {
                          </div>
                      </div>
 
-                     <div className="p-6 rounded-xl bg-zinc-900/50 border border-white/5 mb-10">
-                         <div className="flex items-center gap-4 mb-4">
-                            <div className="p-3 rounded bg-blue-500/10 text-blue-400">
-                                <Layout size={24} />
+                     <div className="p-4 rounded-lg bg-zinc-900/50 border border-white/5 mb-8">
+                         <div className="flex items-center gap-3 mb-3">
+                            <div className="p-2 rounded bg-blue-500/10 text-blue-400">
+                                <Layout size={18} />
                             </div>
-                            <span className="text-lg text-zinc-200 font-medium">Homepage_v2.fig</span>
+                            <span className="text-sm text-zinc-200">Homepage_v2.fig</span>
                          </div>
-                         <div className="h-40 bg-zinc-950 rounded border border-white/5 flex items-center justify-center relative overflow-hidden group cursor-pointer">
+                         <div className="h-32 bg-zinc-950 rounded border border-white/5 flex items-center justify-center relative overflow-hidden group cursor-pointer">
                              <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.05)_50%,transparent_75%)] bg-[length:250%_250%] animate-[shimmer_3s_infinite]" />
-                             <span className="text-sm text-zinc-500">Preview Unavailable</span>
+                             <span className="text-xs text-zinc-500">Preview Unavailable</span>
                          </div>
                      </div>
                      
-                     <div className="flex gap-4">
-                         <button 
-                            className={`flex-1 py-4 rounded-xl text-base font-bold flex items-center justify-center gap-2 transition-all ${
+                     <div className="flex gap-3">
+                         <motion.button 
+                            className={`flex-1 py-3 rounded-lg text-sm font-bold flex items-center justify-center gap-2 transition-all ${
                                 status === 'approved'
                                     ? 'bg-green-600 text-white'
                                     : 'bg-white text-black hover:bg-zinc-200'
                             }`}
                          >
-                             {status === 'approved' ? <CheckCircle2 size={20} /> : null}
+                             {status === 'approved' ? <CheckCircle2 size={16} /> : null}
                              {status === 'approved' ? 'Approved' : 'Approve Milestone'}
-                         </button>
-                         <button className="px-8 py-4 bg-zinc-900 border border-white/10 text-zinc-400 rounded-xl text-base font-medium hover:text-white transition-colors">
+                         </motion.button>
+                         <button className="px-4 py-3 bg-zinc-900 border border-white/10 text-zinc-400 rounded-lg text-sm font-medium hover:text-white transition-colors">
                              Request Changes
                          </button>
                      </div>
@@ -257,7 +257,7 @@ const TerminalAnimation = () => {
 const FeatureSection = ({ title, description, icon: Icon, children, flipped = false, features = [] }: any) => {
   return (
     <section className="py-24 border-t border-white/5 relative overflow-hidden">
-      <div className="max-w-screen-2xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-center">
             {/* Text Content */}
             <div className={`order-2 ${flipped ? 'lg:order-2' : 'lg:order-1'}`}>
@@ -292,7 +292,7 @@ const FeatureSection = ({ title, description, icon: Icon, children, flipped = fa
             {/* Visual/Animation Content */}
             <div className={`order-1 ${flipped ? 'lg:order-1' : 'lg:order-2'} relative`}>
                 <ScrollReveal delay={200} width="w-full">
-                    <div className="relative w-full aspect-square md:aspect-[4/3] rounded-2xl border border-white/10 bg-zinc-900/20 overflow-hidden shadow-2xl">
+                    <div className="relative w-full aspect-square rounded-2xl border border-white/10 bg-zinc-900/20 overflow-hidden shadow-2xl">
                         {/* Soft Glow */}
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-white/5 blur-3xl rounded-full opacity-20 pointer-events-none" />
                         {children}

@@ -6,7 +6,7 @@ import ScrollReveal from './ScrollReveal';
 const Security = () => {
   return (
     <section id="security" className="py-32 border-t border-white/5">
-      <div className="max-w-screen-2xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div>
                 <ScrollReveal>

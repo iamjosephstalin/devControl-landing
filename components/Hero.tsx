@@ -30,7 +30,7 @@ const Hero = () => {
       <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
       
       {/* Content Section */}
-      <div className="max-w-screen-2xl mx-auto px-6 relative z-10 text-center mb-20">
+      <div className="max-w-7xl mx-auto px-6 relative z-10 text-center mb-20">
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

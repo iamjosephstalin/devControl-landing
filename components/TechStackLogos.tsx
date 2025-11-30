@@ -18,7 +18,7 @@ const TechStackLogos = () => {
 
   return (
     <section id="integrations" className="py-12 border-b border-white/5 overflow-hidden">
-      <div className="max-w-screen-2xl mx-auto px-6 text-center">
+      <div className="max-w-7xl mx-auto px-6 text-center">
         <ScrollReveal>
             <p className="text-xs font-semibold text-zinc-500 mb-8 uppercase tracking-widest">
                 Powering next-gen teams

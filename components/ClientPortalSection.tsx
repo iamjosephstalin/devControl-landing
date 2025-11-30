@@ -1,11 +1,63 @@
-import React from 'react';
-import { Users, CheckCircle, FileText, ChevronRight, Lock, Download, Shield } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Users, CheckCircle, FileText, ChevronRight, Lock, Download, Shield, Clock, AlertCircle } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 
 const ClientPortalSection = () => {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const workflowSteps = [
+    {
+      title: "Homepage Redesign",
+      status: "pending_review",
+      description: "New hero section and navigation",
+      action: "Review Required",
+      color: "yellow",
+      icon: Clock
+    },
+    {
+      title: "Homepage Redesign", 
+      status: "under_review",
+      description: "Client is reviewing the changes...",
+      action: "Under Review",
+      color: "blue",
+      icon: AlertCircle
+    },
+    {
+      title: "Homepage Redesign",
+      status: "approved",
+      description: "Approved by client - Ready for deployment",
+      action: "Approved",
+      color: "green", 
+      icon: CheckCircle
+    },
+    {
+      title: "Payment Integration",
+      status: "pending_review",
+      description: "Stripe payment gateway integration",
+      action: "Review Required",
+      color: "yellow",
+      icon: Clock
+    }
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsAnimating(true);
+      setTimeout(() => {
+        setCurrentStep((prev) => (prev + 1) % workflowSteps.length);
+        setIsAnimating(false);
+      }, 300);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const currentWorkflow = workflowSteps[currentStep];
+
   return (
     <section className="py-24 border-y border-white/5">
-      <div className="max-w-screen-2xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6">
         <ScrollReveal>
             <div className="text-center mb-16">
                 <span className="text-blue-400 font-semibold tracking-wider text-sm uppercase">Collaboration</span>
@@ -109,7 +161,7 @@ const ClientPortalSection = () => {
 
         {/* Client Portal Mockup */}
         <ScrollReveal delay={400}>
-            <div className="relative rounded-xl border border-white/10 bg-[#09090b]/80 backdrop-blur-xl shadow-2xl overflow-hidden">
+            <div className="relative rounded-xl border border-white/10 bg-[#09090b]/80 backdrop-blur-xl shadow-2xl overflow-hidden mx-auto max-w-6xl">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-blue-500"></div>
                 
                 {/* Mockup Header */}
@@ -125,15 +177,16 @@ const ClientPortalSection = () => {
                 </div>
 
                 {/* Mockup Content */}
-                <div className="p-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="p-4 md:p-8 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
                     {/* Welcome Section */}
                     <div className="md:col-span-2 space-y-6">
                         <div>
-                            <h3 className="text-2xl font-bold text-white mb-2">Project Status</h3>
-                            <p className="text-zinc-400 text-sm">Here is the latest progress on the MVP development.</p>
+                            <h3 className="text-2xl font-bold text-white mb-2">Client Approval Workflow</h3>
+                            <p className="text-zinc-400 text-sm">Watch how clients seamlessly review and approve deliverables in real-time.</p>
                         </div>
                         
                         <div className="space-y-4">
+                            {/* Completed Task */}
                             <div className="p-4 rounded-lg border border-white/5 bg-zinc-900/30 flex items-center justify-between">
                                 <div className="flex items-center gap-4">
                                     <div className="w-10 h-10 rounded-full bg-green-500/10 text-green-400 flex items-center justify-center">
@@ -141,56 +194,115 @@ const ClientPortalSection = () => {
                                     </div>
                                     <div>
                                         <h4 className="text-white text-sm font-medium">User Authentication</h4>
-                                        <p className="text-zinc-500 text-xs">Completed 2 days ago</p>
+                                        <p className="text-zinc-500 text-xs">Approved by client 2 days ago</p>
                                     </div>
                                 </div>
-                                <span className="px-2 py-1 rounded bg-green-500/10 text-green-400 text-xs font-medium border border-green-500/20">Done</span>
+                                <span className="px-2 py-1 rounded bg-green-500/10 text-green-400 text-xs font-medium border border-green-500/20">Approved</span>
                             </div>
 
-                            <div className="p-4 rounded-lg border border-white/5 bg-zinc-900/30 flex items-center justify-between">
+                            {/* Animated Current Task */}
+                            <div className={`p-4 rounded-lg border ${
+                              currentWorkflow.color === 'yellow' ? 'border-yellow-500/30 bg-yellow-500/5' :
+                              currentWorkflow.color === 'blue' ? 'border-blue-500/30 bg-blue-500/5' :
+                              'border-green-500/30 bg-green-500/5'
+                            } flex items-center justify-between transition-all duration-500 ${
+                              isAnimating ? 'scale-[0.98] opacity-80' : 'scale-100 opacity-100'
+                            }`}>
                                 <div className="flex items-center gap-4">
-                                    <div className="w-10 h-10 rounded-full bg-blue-500/10 text-blue-400 flex items-center justify-center relative">
-                                        <div className="w-2 h-2 rounded-full bg-blue-500 animate-ping absolute" />
-                                        <div className="w-2 h-2 rounded-full bg-blue-500 relative z-10" />
+                                    <div className={`w-10 h-10 rounded-full ${
+                                      currentWorkflow.color === 'yellow' ? 'bg-yellow-500/10 text-yellow-400' :
+                                      currentWorkflow.color === 'blue' ? 'bg-blue-500/10 text-blue-400' :
+                                      'bg-green-500/10 text-green-400'
+                                    } flex items-center justify-center relative`}>
+                                        {currentWorkflow.status === 'under_review' && (
+                                          <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse absolute" />
+                                        )}
+                                        <currentWorkflow.icon size={20} className="relative z-10" />
                                     </div>
                                     <div>
-                                        <h4 className="text-white text-sm font-medium">Payment Integration</h4>
-                                        <p className="text-zinc-500 text-xs">Currently in progress</p>
+                                        <h4 className="text-white text-sm font-medium">{currentWorkflow.title}</h4>
+                                        <p className="text-zinc-500 text-xs">{currentWorkflow.description}</p>
                                     </div>
                                 </div>
-                                <button className="px-3 py-1.5 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-medium transition-colors shadow-lg shadow-blue-500/20">
-                                    Review Demo
-                                </button>
+                                
+                                {currentWorkflow.status === 'pending_review' && (
+                                  <button className="px-3 py-1.5 rounded bg-yellow-600/80 hover:bg-yellow-500 text-white text-xs font-medium transition-colors shadow-lg shadow-yellow-500/20 animate-pulse">
+                                    Client Review Needed
+                                  </button>
+                                )}
+                                
+                                {currentWorkflow.status === 'under_review' && (
+                                  <span className="px-3 py-1.5 rounded bg-blue-500/20 text-blue-300 text-xs font-medium border border-blue-500/30 flex items-center gap-2">
+                                    <div className="w-2 h-2 rounded-full bg-blue-400 animate-ping" />
+                                    Under Review
+                                  </span>
+                                )}
+                                
+                                {currentWorkflow.status === 'approved' && (
+                                  <span className="px-3 py-1.5 rounded bg-green-500/20 text-green-300 text-xs font-medium border border-green-500/30 flex items-center gap-2">
+                                    <CheckCircle size={12} />
+                                    Approved!
+                                  </span>
+                                )}
+                            </div>
+
+                            {/* Progress Indicator */}
+                            <div className="flex justify-center pt-4">
+                              <div className="flex gap-2">
+                                {workflowSteps.map((_, index) => (
+                                  <div
+                                    key={index}
+                                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                                      index === currentStep ? 'bg-blue-500 scale-125' : 'bg-zinc-700'
+                                    }`}
+                                  />
+                                ))}
+                              </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* Shared Files Sidebar */}
-                    <div className="border-l border-white/5 pl-8 hidden md:block">
-                        <h4 className="text-sm font-bold text-zinc-300 mb-4">Shared Files</h4>
+                    {/* Client Activity Sidebar */}
+                    <div className="md:border-l border-white/5 md:pl-8 hidden md:block">
+                        <h4 className="text-sm font-bold text-zinc-300 mb-4">Recent Activity</h4>
                         <div className="space-y-3">
-                             <div className="flex items-center gap-3 p-2 hover:bg-white/5 rounded transition-colors cursor-pointer group">
-                                <FileText size={16} className="text-zinc-500 group-hover:text-blue-400" />
+                             <div className="flex items-start gap-3 p-2 rounded transition-colors">
+                                <div className="w-2 h-2 rounded-full bg-green-500 mt-2 flex-shrink-0" />
                                 <div>
-                                    <div className="text-xs text-zinc-300 font-medium">Contract_Signed.pdf</div>
-                                    <div className="text-[10px] text-zinc-600">2.4 MB • 12 Oct</div>
+                                    <div className="text-xs text-zinc-300 font-medium">Client approved homepage</div>
+                                    <div className="text-[10px] text-zinc-500">2 minutes ago</div>
                                 </div>
                              </div>
-                             <div className="flex items-center gap-3 p-2 hover:bg-white/5 rounded transition-colors cursor-pointer group">
-                                <FileText size={16} className="text-zinc-500 group-hover:text-blue-400" />
+                             <div className="flex items-start gap-3 p-2 rounded transition-colors">
+                                <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse mt-2 flex-shrink-0" />
                                 <div>
-                                    <div className="text-xs text-zinc-300 font-medium">Invoice_Oct.pdf</div>
-                                    <div className="text-[10px] text-zinc-600">140 KB • 01 Nov</div>
+                                    <div className="text-xs text-zinc-300 font-medium">Review requested</div>
+                                    <div className="text-[10px] text-zinc-500">5 minutes ago</div>
+                                </div>
+                             </div>
+                             <div className="flex items-start gap-3 p-2 rounded transition-colors">
+                                <div className="w-2 h-2 rounded-full bg-zinc-600 mt-2 flex-shrink-0" />
+                                <div>
+                                    <div className="text-xs text-zinc-400 font-medium">Files uploaded</div>
+                                    <div className="text-[10px] text-zinc-500">1 hour ago</div>
                                 </div>
                              </div>
                         </div>
 
-                        <div className="mt-8 p-4 rounded bg-blue-500/5 border border-blue-500/10">
-                            <p className="text-xs text-blue-300 mb-2 font-medium">Next Milestone</p>
-                            <div className="h-1 w-full bg-blue-900/30 rounded-full overflow-hidden">
-                                <div className="h-full bg-blue-500 w-[75%]"></div>
+                        <div className="mt-8 p-4 rounded bg-purple-500/5 border border-purple-500/10">
+                            <p className="text-xs text-purple-300 mb-2 font-medium flex items-center gap-2">
+                                <Users size={12} />
+                                Client Engagement
+                            </p>
+                            <div className="h-1 w-full bg-purple-900/30 rounded-full overflow-hidden">
+                                <div className="h-full bg-gradient-to-r from-purple-500 to-blue-500 w-[85%] transition-all duration-1000"></div>
                             </div>
-                            <p className="text-[10px] text-zinc-500 mt-2 text-right">75% Complete</p>
+                            <p className="text-[10px] text-zinc-500 mt-2 text-right">85% Response Rate</p>
+                        </div>
+
+                        <div className="mt-6 p-3 rounded bg-zinc-900/50 border border-white/5">
+                            <p className="text-[10px] text-zinc-400 mb-1">💡 Tip</p>
+                            <p className="text-[10px] text-zinc-500">"@mention" clients in comments to notify them instantly</p>
                         </div>
                     </div>
                 </div>
