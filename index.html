@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon-16x16.svg" sizes="16x16" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="DevControl - Your Personal Developer Control Center. Streamline your development workflow with powerful integrations and tools." />
+    <meta name="keywords" content="developer tools, control center, development workflow, integrations, DevOps" />
+    <meta name="author" content="DevControl" />
+    <meta property="og:title" content="DevControl - Your Personal Developer Control Center" />
+    <meta property="og:description" content="Streamline your development workflow with powerful integrations and tools." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/favicon.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="DevControl - Your Personal Developer Control Center" />
+    <meta name="twitter:description" content="Streamline your development workflow with powerful integrations and tools." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://esm.sh https://aistudiocdn.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.tailwindcss.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:;" />
+    <title>DevControl - Your Personal Developer Control Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              background: '#09090b', // Zinc 950
+              foreground: '#fafafa', // Zinc 50
+              primary: {
+                DEFAULT: '#3b82f6', // Blue 500
+                foreground: '#ffffff',
+              },
+              muted: {
+                DEFAULT: '#27272a', // Zinc 800
+                foreground: '#a1a1aa', // Zinc 400
+              },
+              card: {
+                DEFAULT: '#18181b', // Zinc 900
+                foreground: '#fafafa',
+              },
+              border: '#27272a', // Zinc 800
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            animation: {
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'meteor': 'meteor 5s linear infinite',
+              'scroll': 'scroll 40s linear infinite',
+              'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear',
+            },
+            keyframes: {
+              meteor: {
+                '0%': { transform: 'rotate(215deg) translateX(0)', opacity: '1' },
+                '70%': { opacity: '1' },
+                '100%': { transform: 'rotate(215deg) translateX(-500px)', opacity: '0' },
+              },
+              scroll: {
+                '0%': { transform: 'translateX(0)' },
+                '100%': { transform: 'translateX(-50%)' },
+              },
+              'border-beam': {
+                '100%': {
+                  'offset-distance': '100%',
+                },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background-color: #000000;
+        color: #ffffff;
+        font-family: 'Inter', sans-serif;
+      }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #09090b; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #27272a; 
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #3f3f46; 
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.2.0",
+    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+    "react-dom": "https://esm.sh/react-dom@18.2.0",
+    "react-router-dom": "https://esm.sh/react-router-dom@6.22.3?external=react,react-dom",
+    "@remix-run/router": "https://esm.sh/@remix-run/router@1.15.3",
+    "lucide-react": "https://esm.sh/lucide-react@0.344.0?external=react,react-dom",
+    "framer-motion": "https://esm.sh/framer-motion@11.0.8?external=react,react-dom",
+    "clsx": "https://esm.sh/clsx@2.1.0",
+    "tailwind-merge": "https://esm.sh/tailwind-merge@2.2.1",
+    "@react-three/fiber": "https://esm.sh/@react-three/fiber@8.15.16?external=react,react-dom,three",
+    "@react-three/drei": "https://esm.sh/@react-three/drei@9.99.0?external=react,react-dom,three,@react-three/fiber",
+    "three": "https://esm.sh/three@0.161.0",
+    "maath": "https://esm.sh/maath@0.10.7?external=react,react-dom,three",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
